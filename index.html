@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tactical Control Panel | v1.0</title>
+    <link rel="stylesheet" href="./src/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="mode-manual">
+    <div id="app">
+        <!-- Status Bar -->
+        <header class="status-bar">
+            <div class="status-item">
+                <span class="label">SYSTEM</span>
+                <span class="value" id="system-status">ONLINE</span>
+            </div>
+            <div class="status-item">
+                <span class="label">CONNECTION</span>
+                <span class="value status-good" id="conn-status">STABLE</span>
+            </div>
+            <div class="status-item">
+                <span class="label">BATTERY</span>
+                <span class="value" id="battery-level">85%</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="control-grid">
+            <!-- Mode Selector -->
+            <section class="panel mode-panel">
+                <h2 class="panel-title">CONTROL MODE</h2>
+                <div class="mode-selector">
+                    <button class="mode-btn active" id="btn-manual" data-mode="manual">MANUAL</button>
+                    <button class="mode-btn" id="btn-pilot" data-mode="pilot">PILOT</button>
+                </div>
+            </section>
+
+            <!-- Manual Controls -->
+            <section class="panel control-panel" id="manual-controls">
+                <h2 class="panel-title">TACTICAL CONTROLS</h2>
+                <div class="joystick-container">
+                    <div class="joystick" id="main-joystick">
+                        <div class="joystick-handle"></div>
+                    </div>
+                </div>
+                <div class="button-grid">
+                    <button class="action-btn">LIGHTS</button>
+                    <button class="action-btn">HORN</button>
+                    <button class="action-btn">AUX 1</button>
+                    <button class="action-btn">AUX 2</button>
+                </div>
+            </section>
+
+            <!-- Diagnostics -->
+            <section class="panel diag-panel">
+                <h2 class="panel-title">DIAGNOSTICS</h2>
+                <div class="telemetry">
+                    <div class="telemetry-item">
+                        <span>LATENCY</span>
+                        <span id="val-latency">12ms</span>
+                    </div>
+                    <div class="telemetry-item">
+                        <span>CPU LOAD</span>
+                        <span id="val-cpu">24%</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer / E-Stop -->
+        <footer class="footer">
+            <button id="btn-estop" class="estop-btn">EMERGENCY STOP</button>
+        </footer>
+
+        <!-- Emergency Overlay -->
+        <div id="estop-overlay" class="overlay hidden">
+            <div class="overlay-content">
+                <h1>SYSTEM EMERGENCY STOP</h1>
+                <p>ALL MOTORS DISARMED. SYSTEM LOCKED.</p>
+                <div class="unlock-container">
+                    <div class="unlock-progress" id="unlock-progress"></div>
+                    <button id="btn-unlock" class="unlock-btn">HOLD 2S TO RESET</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./src/main.js"></script>
+</body>
+</html>
